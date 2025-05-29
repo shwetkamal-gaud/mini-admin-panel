@@ -36,7 +36,7 @@ A fully responsive mini admin dashboard built using **Next.js (App Router)**, **
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/your-username/mini-admin-panel.git
+git clone https://github.com/shwetkamal-gaud/mini-admin-panel.git
 cd mini-admin-panel
 ```
 
