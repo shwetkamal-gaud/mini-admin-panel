@@ -15,7 +15,7 @@ export default function Header() {
     };
 
     return (
-        <header className="flex sticky top-0 z-30 justify-between items-center p-4 bg-yellow-500 dark:bg-gray-500 text-black dark:text-yellow-500">
+        <header className="flex sticky top-0 z-30 justify-between rounded-full items-center py-2 px-4 bg-yellow-500 dark:bg-gray-500 text-black dark:text-yellow-500">
             <h1 className="text-xl font-bold">Admin Dashboard</h1>
             <div className="flex items-center gap-4">
                 <ThemeToggle />

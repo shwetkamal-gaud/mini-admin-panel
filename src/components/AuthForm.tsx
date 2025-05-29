@@ -11,17 +11,21 @@ export default function AuthForm({ mode }: { mode: "login" | "signup" }) {
     const [error, setError] = useState("");
     const { login: setToken } = useAuthStore();
     const router = useRouter();
-    
+
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
         setError("");
         try {
             const data = mode === "login" ? await login(email, password) : await register(email, password);
             setToken(data.token);
-            document.cookie = `token=${data.token}`;
+            document.cookie = `token=${data.token}; path=/; max-age=86400`;
             router.push("/dashboard");
-        } catch (err: any) {
-            setError(err.message);
+        } catch (err:unknown) {
+            if (err instanceof Error) {
+                setError(err.message);
+            } else {
+                setError("Something went wrong");
+            }
         }
     }
 
@@ -35,7 +39,7 @@ export default function AuthForm({ mode }: { mode: "login" | "signup" }) {
                         <path d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z" />
                     </svg>
                 </div>
-                <input value={email} onChange={(e) => setEmail(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-400 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Email" required />
+                <input value={email} type="email" onChange={(e) => setEmail(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-400 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Email" required />
             </div>
             <div className="relative ">
                 <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
