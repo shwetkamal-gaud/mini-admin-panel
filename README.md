@@ -1,8 +1,52 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mini Admin Panel – Next.js + Reqres API
 
-## Getting Started
+A fully responsive mini admin dashboard built using **Next.js (App Router)**, **Tailwind CSS**, and the **Reqres mock API**. This project demonstrates real-world frontend features like authentication, route protection, state management, and interactive UI.
 
-First, run the development server:
+---
+
+## Features
+
+ JWT-based Login / Signup  
+ Protected Dashboard Route  
+ Users Table with Pagination  
+ User Details Modal  
+ Logout  
+ Light/Dark Mode Toggle (with Context + Tailwind)  
+ Responsive Layout (Mobile/Desktop)  
+ Loading and Error States  
+ Clean, polished Yellow/Black/Gray theme  
+ Bonus: Motion (Framer Motion)  
+ Bonus: Token Expiry Auto-Logout (10min)
+
+---
+
+## Tech Stack
+
+- **Next.js App Router**
+- **Tailwind CSS** (Dark mode via `class`)
+- **React Context API** (Auth + Theme)
+- **Framer Motion** (for subtle animations)
+- **Reqres API** (https://reqres.in)
+
+---
+
+##  Setup Instructions
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/your-username/mini-admin-panel.git
+cd mini-admin-panel
+```
+
+### 2. Install the dependencies
+
+```bash
+npm install
+```
+
+### 3. Run the development server
 
 ```bash
 npm run dev
