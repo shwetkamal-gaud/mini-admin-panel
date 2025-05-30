@@ -4,17 +4,17 @@ import { login, register } from "@/lib/api";
 import { useAuthStore } from "@/store/authStore";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { toast } from "react-toastify";
 
 export default function AuthForm({ mode }: { mode: "login" | "signup" }) {
     const [email, setEmail] = useState("eve.holt@reqres.in");
     const [password, setPassword] = useState("pistol");
-    const [error, setError] = useState("");
     const { login: setToken } = useAuthStore();
     const router = useRouter();
 
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
-        setError("");
+        
         try {
             const data = mode === "login" ? await login(email, password) : await register(email, password);
             setToken(data.token);
@@ -22,9 +22,9 @@ export default function AuthForm({ mode }: { mode: "login" | "signup" }) {
             router.push("/dashboard");
         } catch (err:unknown) {
             if (err instanceof Error) {
-                setError(err.message);
+                toast.error(err.message)
             } else {
-                setError("Something went wrong");
+                toast.error("Something went wrong")
             }
         }
     }
@@ -80,7 +80,6 @@ export default function AuthForm({ mode }: { mode: "login" | "signup" }) {
                 <Link className="underline font-bold" href={mode === "login" ? '/signup' : '/'}>{mode === "login" ? 'Signup' : 'Login'}</Link>
             </span>
             <button className="p-2 dark:bg-gray-400 bg-yellow-400 text-gray-600 dark:text-yellow-400  rounded-full  w-full">{mode === "login" ? "Login" : "Sign Up"}</button>
-            {error && <p className="text-red-500 mt-2">{error}</p>}
         </form>
     );
 }

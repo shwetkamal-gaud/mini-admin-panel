@@ -2,6 +2,7 @@
 import { useAuthStore } from "@/store/authStore";
 import { useRouter } from "next/navigation";
 import { ThemeToggle } from "./ThemeToggle";
+import { toast } from "react-toastify";
 
 
 export default function Header() {
@@ -9,7 +10,9 @@ export default function Header() {
     const router = useRouter();
 
     const handleLogout = () => {
+        toast.info('You are logged out')
         logout();
+
         document.cookie = "token=; Max-Age=0";
         router.push("/");
     };

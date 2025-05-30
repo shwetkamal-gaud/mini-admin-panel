@@ -6,6 +6,7 @@ import UserTable from "@/components/UserTable";
 import UserModal from "@/components/UserModal";
 import { useAuthStore } from "@/store/authStore";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 export default function DashboardPage() {
     const [users, setUsers] = useState([]);
@@ -22,7 +23,9 @@ export default function DashboardPage() {
         const expiry = localStorage.getItem("token_expiry");
         if (!token || !expiry || Date.now() > parseInt(expiry)) {
             logout();
+            toast.info('You are logged out')
             router.push("/");
+
         } else {
             const timeout = parseInt(expiry) - Date.now();
             const timer = setTimeout(() => {
