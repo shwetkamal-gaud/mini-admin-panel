@@ -55,7 +55,7 @@ export default function DashboardPage() {
     return (
         <div className="text-black p-2">
             <Header />
-            {loading ? <div className="fixed inset-0 flex items-center justify-center bg-white dark:bg-gray-400/10 z-20">
+            {loading ? <div className="fixed inset-0 flex items-center justify-center z-20">
                 <div className="animate-spin rounded-full h-12 w-12 border-4 border-yellow-500 border-t-transparent"></div>
             </div> :
 
